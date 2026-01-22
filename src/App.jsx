@@ -5,12 +5,12 @@ import NewExpense from './components/NewExpense/NewExpense.jsx';
 function App() {
   const expenses = [
     {
-      date: new Date(2026, 0, 9),
+      date: new Date(2025, 1, 9),
       title: 'New book',
       price: 30.99,
     },
     {
-      date: new Date(2026, 0, 9),
+      date: new Date(2024, 1, 9),
       title: 'New book 2',
       price: 799.49,
     }
