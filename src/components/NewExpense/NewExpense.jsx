@@ -1,8 +1,9 @@
+import { useState } from 'react';
 import ExpenseForm from "./ExpenseForm";
 import './NewExpense.css';
 
-
 const NewExpense = (props) => {
+    const [editForm, setEditForm] = useState(false);
 
     const saveExpenseDataHandler = (enteredExpenseData) => {
         const expenseData = {
@@ -10,13 +11,32 @@ const NewExpense = (props) => {
             id: Math.random().toString()
         };
         props.onAddExpense(expenseData);
-    }
 
-    return(
+        setEditForm(false);  // Vorm pannakse kinni pärast lisamist
+    };
+
+    const startEditingHandler = () => {
+        setEditForm(true);
+    };
+
+    const stopEditingHandler = () => {
+        setEditForm(false);
+    };
+
+    return (
         <div className="new-expense">
-            <ExpenseForm onSaveExpenseData={saveExpenseDataHandler} />
+            {!editForm && (
+                <button onClick={startEditingHandler}>Add New Expense</button>
+            )}
+
+            {editForm && (
+                <ExpenseForm
+                    onSaveExpenseData={saveExpenseDataHandler}
+                    onCancel={stopEditingHandler}  // <-- siin
+                />
+            )}
         </div>
     );
-}
+};
 
 export default NewExpense;
