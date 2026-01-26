@@ -24,7 +24,7 @@ const Expenses = (props) => {
 
       {filteredExpenses.length === 0 && (
         <p className="expenses__fallback">No expenses found for selected year.</p>
-      )}
+      )};
 
       {filteredExpenses.map((expense) => (
         <ExpenseItem data={expense} key={expense.id} />
