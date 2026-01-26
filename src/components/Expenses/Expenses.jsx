@@ -5,16 +5,13 @@ import ExpenseItem from './ExpenseItem.jsx';
 import ExpensesFilter from './ExpensesFilter';
 
 const Expenses = (props) => {
-  const [selectedYear, setSelectedYear] = useState('2025');
+  const [selectedYear, setSelectedYear] = useState('2026');
 
   const filterChangeHandler = (year) => {
-    console.log('Expenses: saadud aasta', year);
     setSelectedYear(year);
   };
 
-  console.log('Expenses: hetkel valitud aasta', selectedYear);
-
-  const filteredExpenses = props.data.filter(expense => {
+  const filteredExpenses = props.expenses.filter(expense => {
     return expense.date.getFullYear().toString() === selectedYear;
   });
 
@@ -25,8 +22,12 @@ const Expenses = (props) => {
         onChangeFilter={filterChangeHandler}
       />
 
+      {filteredExpenses.length === 0 && (
+        <p className="expenses__fallback">No expenses found for selected year.</p>
+      )}
+
       {filteredExpenses.map((expense) => (
-        <ExpenseItem key={expense.title} data={expense} />
+        <ExpenseItem data={expense} key={expense.id} />
       ))}
     </Card>
   );
