@@ -12,7 +12,7 @@ const NewExpense = (props) => {
         };
         props.onAddExpense(expenseData);
 
-        setEditForm(false);  // Vorm pannakse kinni pärast lisamist
+        setEditForm(false);
     };
 
     const startEditingHandler = () => {
@@ -32,7 +32,7 @@ const NewExpense = (props) => {
             {editForm && (
                 <ExpenseForm
                     onSaveExpenseData={saveExpenseDataHandler}
-                    onCancel={stopEditingHandler}  // <-- siin
+                    onCancel={stopEditingHandler}
                 />
             )}
         </div>
