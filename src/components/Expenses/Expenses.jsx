@@ -12,7 +12,7 @@ const Expenses = (props) => {
   };
 
   const filteredExpenses = props.expenses.filter(expense => {
-    return expense.date.getFullYear().toString() === selectedYear;
+    return new Date(expense.date).getFullYear().toString() === selectedYear;
   });
 
   let expensesContent = <p className="expenses__fallback">No expenses found for selected year.</p>;
