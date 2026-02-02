@@ -9,9 +9,6 @@ const ExpenseForm = (props) => {
     const amountInputRef = useRef();
     const dateInputRef = useRef();
 
-    const errorHandler = () => {
-        setError(null);
-    }
 
     const submitHandler = (event) => {
         event.preventDefault();
@@ -43,6 +40,10 @@ const ExpenseForm = (props) => {
         titleInputRef.current.value = '';
         amountInputRef.current.value = '';
         dateInputRef.current.value = '';
+    }
+
+    const errorHandler = () => {
+        setError(null);
     }
 
     return (

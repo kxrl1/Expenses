@@ -1,4 +1,5 @@
-import { createPortal }   from "react-dom";
+import React from 'react';
+import { createPortal } from "react-dom";
 import Card from "./Card.jsx";
 import Button from "./Button.jsx";
 import "./Error.css";
@@ -24,11 +25,17 @@ const ModalOverlay = (props) => {
 };
 
 const Error = (props) => {
+  const backdropRoot = document.getElementById("backdrop-root");
+  const overlayRoot = document.getElementById("overlay-root");
+
+  const targetBackdrop = backdropRoot || document.body;
+  const targetOverlay = overlayRoot || document.body;
+
   return (
     <>
       {createPortal(
         <Backdrop onConfirm={props.onConfirm} />,
-        document.getElementById("backdrop-root")
+        targetBackdrop
       )}
 
       {createPortal(
@@ -37,7 +44,7 @@ const Error = (props) => {
           message={props.message}
           onConfirm={props.onConfirm}
         />,
-        document.getElementById("overlay-root")
+        targetOverlay
       )}
     </>
   );
