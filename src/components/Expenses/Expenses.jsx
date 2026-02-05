@@ -11,20 +11,26 @@ const Expenses = (props) => {
     setSelectedYear(year);
   };
 
+  // Props.expenses, mitte props.items
+  // Kasutame Number(selectedYear), et võrrelda numberiga
   const filteredExpenses = props.expenses.filter(expense => {
-    return new Date(expense.date).getFullYear().toString() === selectedYear;
+    return new Date(expense.date).getFullYear() === Number(selectedYear);
   });
 
-  let expensesContent = <p className="expenses__fallback">No expenses found for selected year.</p>;
+  let expensesContent = (
+    <p className="expenses__fallback">
+      No expenses found for selected year.
+    </p>
+  );
 
   if (filteredExpenses.length > 0) {
-    expensesContent = filteredExpenses.map((expense) => {
-      return <ExpenseItem data={expense} key={expense.id} />
-    });
+    expensesContent = filteredExpenses.map((expense) => (
+      <ExpenseItem data={expense} key={expense.id} />
+    ));
   }
 
   return (
-    <Card className='expenses'>
+    <Card className="expenses">
       <ExpensesFilter
         selected={selectedYear}
         onChangeFilter={filterChangeHandler}
@@ -32,6 +38,6 @@ const Expenses = (props) => {
       {expensesContent}
     </Card>
   );
-}
+};
 
 export default Expenses;
